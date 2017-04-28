@@ -86,6 +86,12 @@
 .categories .section-description { 
   margin-bottom: 4rem;
 }
+/* Form
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+form {
+  color: gray;
+}
+
 
 /* Bigger than 550 */
 @media (min-width: 550px) {
