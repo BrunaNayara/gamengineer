@@ -43,7 +43,7 @@
     <div class="container">
       <img class="" src="images/logo.png">
       <h4 class="hero-heading">Faça seu jogo em <b>3 passos</b></h4>
-      <a class="button button-primary cta-button" href="http://getskeleton.com">Comece agora</a>
+      <a class="button button-primary cta-button" href="/form.html">Comece agora</a>
     </div>
   </div>
 
@@ -71,7 +71,7 @@
           <p class="value-description">Jogue, compartilhe e se divirta com seus amigos.</p>
         </div>
       </div>
-      <a class="button button-primary cta-button" href="http://getskeleton.com">Faça o seu</a>
+      <a class="button button-primary cta-button" href="/form.html">Faça o seu</a>
     </div>
   </div>
 
@@ -91,7 +91,7 @@
           <h4 class="help-heading">Use sua criatividade</h4>
         </div>
       </div>
-      <a class="button button-primary cta-button" href="http://getskeleton.com">Experimente</a>
+      <a class="button button-primary cta-button" href="/form.html">Experimente</a>
     </div>
   </div>
 
@@ -100,18 +100,43 @@
       <h3 class="section-heading">Quer saber mais?</h3>
       <p class="section-description">Deixe seu email e fique por dentro das novidades.</p>
 
-      <form action="https://script.google.com/macros/s/AKfycbyHcsuev8grs9wnSj43JY8t1TGv_h8IMHF4kSL-EXlDQe2ju6M/exec" 
-            method="POST" enctype="application/json">
+      <form id='email-form'>
         <div class="row">
           <div class="six columns offset-by-three">
             <input class="u-full-width" type="email" name="email" placeholder="meuemail@mail.com" id="email">
           </div>
         </div>
-            <input class="button-primary" type="submit" value="Me inscreva">
+            <input id="post-btn" class="button-primary" type="submit" value="Me inscreva">
       </form>
 
     </div>
   </div>
+
+  <script>
+    $("#email-form").submit(function(){
+      var formData = {
+        email: $('#email-form').serializeArray()[0]['value']
+      };
+
+      $.ajax({
+        type: 'POST',
+        url: 'https://gamengineer-rails.herokuapp.com/leads',
+        data: JSON.stringify(formData),
+        async: false,
+        success: function(e) {
+          console.log(e);
+          window.location = "/message.html";
+        },
+        error: function(e) {
+          console.log(e);
+        },
+        dataType: "json",
+        contentType: "application/json"
+      });
+
+      return false;
+    });
+  </script>
 
 
 
